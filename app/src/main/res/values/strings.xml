@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Meals - Little App</string>
+
+    //Theme
+    <string name="basic_theme">Basic Theme</string>
+    <string name="sec_theme">Sec Theme</string>
+
+    <string name="what_would_you_like_to_eat">What would you like to eat?</string>
+    <string name="over_popular_items">Over popular items</string>
+    <string name="categories">Categories</string>
+    <string name="instructions">Instructions :</string>
+
 </resources>
