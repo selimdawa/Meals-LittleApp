@@ -27,6 +27,7 @@ sdpAndroid = "1.1.1"
 sspAndroid = "1.1.1"
 timber = "5.0.1"
 navigation = "2.9.8"
+ksp = "1.8.10-1.0.9"
 
 [libraries]
 androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
@@ -62,3 +63,4 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 navigation-safeargs-kotlin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
+ksp-processor = { id = "com.google.devtools.ksp", version.ref = "ksp" }
