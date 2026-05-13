@@ -27,7 +27,7 @@ sdpAndroid = "1.1.1"
 sspAndroid = "1.1.1"
 timber = "5.0.1"
 navigation = "2.9.8"
-ksp = "1.8.10-1.0.9"
+ksp = "2.3.7"
 
 [libraries]
 androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
