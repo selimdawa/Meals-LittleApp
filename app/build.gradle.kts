@@ -60,7 +60,10 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.cardview)
-    //Room
+    //Image
+    implementation(libs.glide)                          //Glide Image
+    ksp(libs.glide.ksp)                                 //Glide Compiler
+    // Room
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
@@ -81,7 +84,5 @@ dependencies {
     implementation(libs.sdp.android)
     implementation(libs.ssp.android)
     //Other's
-    implementation(libs.glide)     //Glide
-    ksp(libs.compiler)
     implementation(libs.timber)              //Timber Log
 }
