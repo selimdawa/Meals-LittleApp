@@ -41,4 +41,12 @@ class MealViewModel(val mealDatabase: MealDatabase) : ViewModel() {
     fun insertMeal(meal: Meal) {
         viewModelScope.launch(Dispatchers.IO) { mealDatabase.mealDao().upsert(meal) }
     }
+
+    fun observeFavoritesMealsLiveData(): LiveData<List<Meal>> {
+        return mealDatabase.mealDao().getAllMeals()
+    }
+
+    fun deleteMeal(meal: Meal) {
+        viewModelScope.launch(Dispatchers.IO) { mealDatabase.mealDao().delete(meal) }
+    }
 }
