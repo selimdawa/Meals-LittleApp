@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.littleapp.meals.R
 import com.littleapp.meals.Unit.DATA
 import com.littleapp.meals.Unit.THEME
 import com.littleapp.meals.databinding.ActivityCategoryMealsBinding
@@ -13,10 +14,10 @@ import com.littleapp.meals.mvvm.CategoriesMealsViewModel
 
 class CategoryMealsActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityCategoryMealsBinding
-    lateinit var categoryMealsViewModel: CategoriesMealsViewModel
-    lateinit var categoryMealsAdapter: CategoryMealsAdapter
-    var context = this@CategoryMealsActivity
+    private lateinit var binding: ActivityCategoryMealsBinding
+    private lateinit var categoryMealsViewModel: CategoriesMealsViewModel
+    private lateinit var categoryMealsAdapter: CategoryMealsAdapter
+    private val context = this@CategoryMealsActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         THEME.setThemeOfApp(context)
@@ -32,9 +33,12 @@ class CategoryMealsActivity : AppCompatActivity() {
         categoryMealsViewModel = ViewModelProvider(this)[CategoriesMealsViewModel::class.java]
         categoryMealsViewModel.getMealsByCategory(intent.getStringExtra(HomeFragment.CATEGORY_NAME)!!)
         categoryMealsViewModel.observeCategoriesMealsLiveData().observe(this) { mealList ->
-            binding.toolbar.nameSpace.text =
-                DATA.Category_Meals + " ( " + mealList.size.toString() + " ) "
-            categoryMealsAdapter.setMealList(mealList)
+            binding.toolbar.nameSpace.text = getString(
+                R.string.category_meals_count,
+                DATA.Category_Meals,
+                mealList.size
+            )
+            categoryMealsAdapter.submitList(mealList)
         }
     }
 
@@ -47,6 +51,7 @@ class CategoryMealsActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
     private fun prepareRecyclerView() {
         categoryMealsAdapter = CategoryMealsAdapter()
         binding.rvMeals.apply {

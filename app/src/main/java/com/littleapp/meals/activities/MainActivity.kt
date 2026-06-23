@@ -21,18 +21,18 @@ class MainActivity : AppCompatActivity() {
         ViewModelProvider(this, homeViewModelFactory)[HomeViewModel::class.java]
     }
 
-    private var binding: ActivityMainBinding? = null
-    var context = this@MainActivity
+    private lateinit var binding: ActivityMainBinding
+    private val context = this@MainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         THEME.setThemeOfApp(context)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding!!.root)
+        setContentView(binding.root)
 
-        binding!!.toolbar.nameSpace.text = DATA.MEALS
+        binding.toolbar.nameSpace.text = DATA.MEALS
 
-        val bottomNavigationView = binding!!.btmNav
+        val bottomNavigationView = binding.btmNav
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment_container)
 
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
