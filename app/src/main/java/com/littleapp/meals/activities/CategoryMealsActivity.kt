@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.littleapp.meals.R
-import com.littleapp.meals.Unit.DATA
-import com.littleapp.meals.Unit.THEME
+import com.littleapp.meals.utils.DATA
+import com.littleapp.meals.utils.THEME
 import com.littleapp.meals.databinding.ActivityCategoryMealsBinding
 import com.littleapp.meals.adapters.CategoryMealsAdapter
 import com.littleapp.meals.fragments.HomeFragment

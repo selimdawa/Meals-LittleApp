@@ -24,6 +24,8 @@ sspAndroid = "1.1.1"
 timber = "5.0.1"
 navigation = "2.9.8"
 ksp = "2.3.8"
+hilt = "2.60.1"
+hiltNavigation = "1.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -32,7 +34,6 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtx" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
-androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
@@ -51,8 +52,13 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 ssp-android = { module = "com.intuit.ssp:ssp-android", version.ref = "sspAndroid" }
 sdp-android = { module = "com.intuit.sdp:sdp-android", version.ref = "sdpAndroid" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+#Dagger - Hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-navigation-fragment = { group = "androidx.hilt", name = "hilt-navigation-fragment", version.ref = "hiltNavigation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 navigation-safeargs-kotlin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
-ksp-processor = { id = "com.google.devtools.ksp", version.ref = "ksp" }

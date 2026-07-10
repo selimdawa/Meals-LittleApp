@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.navigation.safeargs.kotlin)
-    alias(libs.plugins.ksp.processor)
 }
 
 android {
@@ -54,7 +55,6 @@ dependencies {
     // Room
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
     //Coroutines
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
@@ -68,6 +68,10 @@ dependencies {
     //Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    //Dagger - Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.hilt.navigation.fragment)
     //Intuit
     implementation(libs.sdp.android)
     implementation(libs.ssp.android)

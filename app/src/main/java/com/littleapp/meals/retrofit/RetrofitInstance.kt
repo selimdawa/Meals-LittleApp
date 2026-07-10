@@ -1,6 +1,6 @@
 package com.littleapp.meals.retrofit
 
-import com.littleapp.meals.Unit.DATA
+import com.littleapp.meals.utils.DATA
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

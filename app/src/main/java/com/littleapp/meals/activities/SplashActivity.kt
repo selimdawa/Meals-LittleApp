@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import com.littleapp.meals.Unit.THEME
-import com.littleapp.meals.Unit.VOID
+import com.littleapp.meals.utils.THEME
+import com.littleapp.meals.utils.VOID
 import com.littleapp.meals.databinding.ActivitySplashBinding
 import com.littleapp.meals.CLASS
 

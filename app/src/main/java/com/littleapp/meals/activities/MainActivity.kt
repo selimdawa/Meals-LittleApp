@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.littleapp.meals.R
-import com.littleapp.meals.Unit.DATA
-import com.littleapp.meals.Unit.THEME
+import com.littleapp.meals.utils.DATA
+import com.littleapp.meals.utils.THEME
 import com.littleapp.meals.databinding.ActivityMainBinding
 import com.littleapp.meals.db.MealDatabase
 import com.littleapp.meals.mvvm.HomeViewModel
