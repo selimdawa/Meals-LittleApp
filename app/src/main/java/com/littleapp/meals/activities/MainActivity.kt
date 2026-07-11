@@ -2,39 +2,35 @@ package com.littleapp.meals.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.littleapp.meals.R
-import com.littleapp.meals.utils.DATA
-import com.littleapp.meals.utils.THEME
 import com.littleapp.meals.databinding.ActivityMainBinding
-import com.littleapp.meals.db.MealDatabase
-import com.littleapp.meals.mvvm.HomeViewModel
-import com.littleapp.meals.mvvm.HomeViewModelFactory
+import com.littleapp.meals.utils.DATA
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    val viewModel: HomeViewModel by lazy {
-        val mealDatabase = MealDatabase.getInstance(this)
-        val homeViewModelFactory = HomeViewModelFactory(mealDatabase)
-        ViewModelProvider(this, homeViewModelFactory)[HomeViewModel::class.java]
-    }
-
-    private lateinit var binding: ActivityMainBinding
-    private val context = this@MainActivity
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        THEME.setThemeOfApp(context)
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.toolbar.nameSpace.text = DATA.MEALS
 
-        val bottomNavigationView = binding.btmNav
-        val navController = Navigation.findNavController(this, R.id.nav_host_fragment_container)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        val navController = navHostFragment.navController
 
-        NavigationUI.setupWithNavController(bottomNavigationView, navController)
+        NavigationUI.setupWithNavController(binding.btmNav, navController)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

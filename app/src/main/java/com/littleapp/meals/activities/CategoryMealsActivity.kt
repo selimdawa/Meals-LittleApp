@@ -2,41 +2,41 @@ package com.littleapp.meals.activities
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.littleapp.meals.R
-import com.littleapp.meals.utils.DATA
-import com.littleapp.meals.utils.THEME
-import com.littleapp.meals.databinding.ActivityCategoryMealsBinding
 import com.littleapp.meals.adapters.CategoryMealsAdapter
+import com.littleapp.meals.databinding.ActivityCategoryMealsBinding
 import com.littleapp.meals.fragments.HomeFragment
 import com.littleapp.meals.mvvm.CategoriesMealsViewModel
+import com.littleapp.meals.utils.DATA
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CategoryMealsActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityCategoryMealsBinding
-    private lateinit var categoryMealsViewModel: CategoriesMealsViewModel
+    private var _binding: ActivityCategoryMealsBinding? = null
+    private val binding get() = _binding!!
+
+    private val categoryMealsViewModel: CategoriesMealsViewModel by viewModels()
     private lateinit var categoryMealsAdapter: CategoryMealsAdapter
-    private val context = this@CategoryMealsActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        THEME.setThemeOfApp(context)
         super.onCreate(savedInstanceState)
-        binding = ActivityCategoryMealsBinding.inflate(layoutInflater)
+        _binding = ActivityCategoryMealsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.toolbar.nameSpace.text = DATA.Category_Meals
+        binding.toolbar.nameSpace.text = DATA.CATEGORY_MEALS
 
         prepareRecyclerView()
         onPopularItemClick()
 
-        categoryMealsViewModel = ViewModelProvider(this)[CategoriesMealsViewModel::class.java]
-        categoryMealsViewModel.getMealsByCategory(intent.getStringExtra(HomeFragment.CATEGORY_NAME)!!)
+        categoryMealsViewModel.getMealsByCategory(
+            intent.getStringExtra(HomeFragment.CATEGORY_NAME).orEmpty()
+        )
         categoryMealsViewModel.observeCategoriesMealsLiveData().observe(this) { mealList ->
             binding.toolbar.nameSpace.text = getString(
-                R.string.category_meals_count,
-                DATA.Category_Meals,
-                mealList.size
+                R.string.category_meals_count, DATA.CATEGORY_MEALS, mealList.size
             )
             categoryMealsAdapter.submitList(mealList)
         }
@@ -44,18 +44,22 @@ class CategoryMealsActivity : AppCompatActivity() {
 
     private fun onPopularItemClick() {
         categoryMealsAdapter.onItemClick = { meal ->
-            val intent = Intent(applicationContext, MealActivity::class.java)
-            intent.putExtra(HomeFragment.MEAL_ID, meal.idMeal)
-            intent.putExtra(HomeFragment.MEAL_NAME, meal.strMeal)
-            intent.putExtra(HomeFragment.MEAL_THUMB, meal.strMealThumb)
+            val intent = Intent(applicationContext, MealActivity::class.java).apply {
+                putExtra(HomeFragment.MEAL_ID, meal.idMeal)
+                putExtra(HomeFragment.MEAL_NAME, meal.strMeal)
+                putExtra(HomeFragment.MEAL_THUMB, meal.strMealThumb)
+            }
             startActivity(intent)
         }
     }
 
     private fun prepareRecyclerView() {
         categoryMealsAdapter = CategoryMealsAdapter()
-        binding.rvMeals.apply {
-            adapter = categoryMealsAdapter
-        }
+        binding.rvMeals.adapter = categoryMealsAdapter
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

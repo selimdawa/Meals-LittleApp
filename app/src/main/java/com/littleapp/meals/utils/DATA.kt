@@ -9,5 +9,5 @@ object DATA {
 
     const val MEALS = "Meals"
     const val BASE_URL_MEALS = "https://www.themealdb.com/api/json/v1/1/"
-    const val Category_Meals = "Category Meals"
+    const val CATEGORY_MEALS = "Category Meals"
 }

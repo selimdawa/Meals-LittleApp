@@ -6,24 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.littleapp.meals.databinding.FragmentCategoriesMealsBinding
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import com.littleapp.meals.R
 import com.littleapp.meals.activities.CategoryMealsActivity
-import com.littleapp.meals.activities.MainActivity
 import com.littleapp.meals.adapters.CategoriesAdapter
+import com.littleapp.meals.databinding.FragmentCategoriesMealsBinding
 import com.littleapp.meals.mvvm.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CategoriesFragment : Fragment() {
 
     private var _binding: FragmentCategoriesMealsBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var categoriesAdapter: CategoriesAdapter
-    private lateinit var viewModel: HomeViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = (requireActivity() as MainActivity).viewModel
-    }
+    private val viewModel: HomeViewModel by hiltNavGraphViewModels(R.id.nav_graph)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,15 +53,14 @@ class CategoriesFragment : Fragment() {
 
     private fun prepareRecyclerView() {
         categoriesAdapter = CategoriesAdapter()
-        binding.rvCategories.apply {
-            adapter = categoriesAdapter
-        }
+        binding.rvCategories.adapter = categoriesAdapter
     }
 
     private fun onCategoryClick() {
         categoriesAdapter.onItemClick = { category ->
-            val intent = Intent(requireContext(), CategoryMealsActivity::class.java)
-            intent.putExtra(HomeFragment.CATEGORY_NAME, category.strCategory)
+            val intent = Intent(requireContext(), CategoryMealsActivity::class.java).apply {
+                putExtra(HomeFragment.CATEGORY_NAME, category.strCategory)
+            }
             startActivity(intent)
         }
     }

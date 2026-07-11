@@ -9,43 +9,36 @@ import com.bumptech.glide.Glide
 import com.littleapp.meals.databinding.ItemMealBinding
 import com.littleapp.meals.pojo.Meal
 
-class FavoritesMealsAdapter : ListAdapter<Meal, FavoritesMealsAdapter.FavoritesMealsAdapterViewHolder>(MealDiffCallback) {
+class FavoritesMealsAdapter :
+    ListAdapter<Meal, FavoritesMealsAdapter.FavoritesMealsAdapterViewHolder>(MealDiffCallback) {
 
     var onItemClick: ((Meal) -> Unit)? = null
 
-    class FavoritesMealsAdapterViewHolder(val binding: ItemMealBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int,
+        parent: ViewGroup, viewType: Int
     ): FavoritesMealsAdapterViewHolder {
-        return FavoritesMealsAdapterViewHolder(
-            ItemMealBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        )
+        val binding = ItemMealBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FavoritesMealsAdapterViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: FavoritesMealsAdapterViewHolder, position: Int) {
         val meal = getItem(position)
 
-        Glide.with(holder.itemView.context)
-            .load(meal.strMealThumb)
-            .into(holder.binding.imgMeal)
+        with(holder.binding) {
+            Glide.with(root.context).load(meal.strMealThumb).into(imgMeal)
 
-        holder.binding.tvMealName.text = meal.strMeal
-
-        holder.itemView.setOnClickListener {
-            onItemClick?.invoke(meal)
+            tvMealName.text = meal.strMeal
+            root.setOnClickListener { onItemClick?.invoke(meal) }
         }
     }
 
-    private object MealDiffCallback : DiffUtil.ItemCallback<Meal>() {
-        override fun areItemsTheSame(oldItem: Meal, newItem: Meal): Boolean {
-            return oldItem.idMeal == newItem.idMeal
-        }
+    class FavoritesMealsAdapterViewHolder(val binding: ItemMealBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
-        override fun areContentsTheSame(oldItem: Meal, newItem: Meal): Boolean {
-            return oldItem == newItem
-        }
+    private object MealDiffCallback : DiffUtil.ItemCallback<Meal>() {
+        override fun areItemsTheSame(oldItem: Meal, newItem: Meal): Boolean =
+            oldItem.idMeal == newItem.idMeal
+
+        override fun areContentsTheSame(oldItem: Meal, newItem: Meal): Boolean = oldItem == newItem
     }
 }

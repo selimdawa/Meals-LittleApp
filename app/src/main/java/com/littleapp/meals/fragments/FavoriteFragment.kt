@@ -6,28 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.littleapp.meals.R
-import com.littleapp.meals.activities.MainActivity
 import com.littleapp.meals.activities.MealActivity
 import com.littleapp.meals.adapters.FavoritesMealsAdapter
 import com.littleapp.meals.databinding.FragmentFavoriteMealsBinding
 import com.littleapp.meals.mvvm.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoriteFragment : Fragment() {
 
     private var _binding: FragmentFavoriteMealsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by hiltNavGraphViewModels(R.id.nav_graph)
     private lateinit var favoritesAdapter: FavoritesMealsAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = (requireActivity() as MainActivity).viewModel
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,9 +74,7 @@ class FavoriteFragment : Fragment() {
 
     private fun prepareRecyclerView() {
         favoritesAdapter = FavoritesMealsAdapter()
-        binding.rvFavorites.apply {
-            adapter = favoritesAdapter
-        }
+        binding.rvFavorites.adapter = favoritesAdapter
     }
 
     private fun observeFavorites() {
@@ -90,10 +85,11 @@ class FavoriteFragment : Fragment() {
 
     private fun onFavoriteItemClick() {
         favoritesAdapter.onItemClick = { meal ->
-            val intent = Intent(requireContext(), MealActivity::class.java)
-            intent.putExtra(HomeFragment.MEAL_ID, meal.idMeal)
-            intent.putExtra(HomeFragment.MEAL_NAME, meal.strMeal)
-            intent.putExtra(HomeFragment.MEAL_THUMB, meal.strMealThumb)
+            val intent = Intent(requireContext(), MealActivity::class.java).apply {
+                putExtra(HomeFragment.MEAL_ID, meal.idMeal)
+                putExtra(HomeFragment.MEAL_NAME, meal.strMeal)
+                putExtra(HomeFragment.MEAL_THUMB, meal.strMealThumb)
+            }
             startActivity(intent)
         }
     }
