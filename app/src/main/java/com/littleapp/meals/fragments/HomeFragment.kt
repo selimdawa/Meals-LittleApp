@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import com.bumptech.glide.Glide
+import coil.load
 import com.littleapp.meals.R
 import com.littleapp.meals.activities.CategoryMealsActivity
 import com.littleapp.meals.activities.MealActivity
@@ -130,7 +130,7 @@ class HomeFragment : Fragment() {
     private fun observerRandomMeal() {
         viewModel.observeRandomMealLiveData().observe(viewLifecycleOwner) { meal ->
             meal?.let {
-                Glide.with(this).load(it.strMealThumb).into(binding.imgRandomMeal)
+                binding.imgRandomMeal.load(it.strMealThumb)
 
                 this.randomMeal = it
             }
