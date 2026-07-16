@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.navigation.safeargs.kotlin)
 }
 
 android {
@@ -54,9 +53,7 @@ dependencies {
     implementation(libs.coil)                          //Coil Image
     //Lifecycle
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     //Coroutines
-    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
     //Room
     implementation(libs.androidx.room.runtime)
