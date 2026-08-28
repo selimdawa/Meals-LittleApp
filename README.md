@@ -1,9 +1,10 @@
-<h1 align="center">Meals - Little App</h1>
+﻿<h1 align="center">Meals - Little App</h1>
 
 <p align="center">
  <a><img alt="Min SDK" src="https://img.shields.io/badge/Min SDK-24-020290?logo=android&logoColor=white"/></a>
  <a><img alt="Target SDK" src="https://img.shields.io/badge/Target SDK-37-0EB265?logo=android&logoColor=0EB265"/></a>
  <a href="https://kotlinlang.org"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-2.4.0-blue?logo=kotlin&logoColor=white"/></a>
+  <a href="https://opensource.org/licenses/MIT"><img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square"/></a>
 </p>
 
 ## Day Mode
@@ -17,3 +18,10 @@ One | Two | Three
 ![](https://blogger.googleusercontent.com/img/a/AVvXsEg6nSESS7nrDaoTeL6SlhVBwAhC3g_BvhOAZMN9rPm_HHlYZuF_a7CotAd3_ldOfUulQCkG-A3qxi4dDIzUdewj-XOmRjpHFo2pP4ZWCXPQsVLJsg8Pl0Dt4k5HUDGQKsVYU_97ogVzg5SmcGttOBUx3qQbTZp7o01AtkYg7qVAVnYhCb0vMb4GJ2AsHA) | ![](https://blogger.googleusercontent.com/img/a/AVvXsEgY8yYTHRiJZYVWkEhzALUI1j-ja9h_f6FN_XIteEdCgHtSWEnvuj1LMG_rsCE5D35NaoSf_zOqAEPmMhceiCyFCYIC1klhG5C2Tthz3VRNpfNCSU2OqZqY-besQjhOZ36sMyFSvYkChcQP0Nh0zcfg2WJ5H3i6qa3BgpwH_82cOgY1uhg4TlHBZrYS9A) | ![](https://blogger.googleusercontent.com/img/a/AVvXsEj6EguOA8fCYGNNoBT5_nAQKlNg0jnVyn6NB6Sy3ru3AuCXBlCW3sHbXeA0i2tyox9L7AQ_DcgGV_tMFQcr8glrkkJYIpu-_Hs34RzTsa_oMQh-3RChd70S3OXPSdJL_1hTkmXVRTrYS-cqOR1KRVzg5Fovxdlhxg_GOAFJXaxdI0ozXY5GUiVfCkgZ1g) | 
 
 - [Simple Advanced Apps - Kotlin](https://github.com/selimdawa/SimpleAdvancedAppsKotlin/)
+
+
+---
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
